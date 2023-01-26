@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
@@ -11,8 +13,75 @@ const StyledContainer = styled.div`
   background-color: #343f4f;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
+  .overlay {
+    position: absolute;
+    top: -300px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+    top: 0px;
+  }
+
+  .popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+
+    h2 {
+      margin-top: 0;
+      color: #333;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+
+      &:hover {
+        color: orange;
+        transform: rotate(90deg);
+      }
+    }
+
+    .content {
+      max-height: 30%;
+      overflow: auto;
+
+      button {
+        padding: 0.8rem 1.2rem;
+        background-color: #fc6d6d;
+        border-radius: 8px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+        margin: 0 auto;
+      }
+    }
+  }
+
   .wrapper {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -26,10 +95,12 @@ const StyledContainer = styled.div`
       font-size: 18px;
       font-weight: 400;
       margin-top: 25px;
+      cursor: pointer;
     }
 
     button:hover {
       scale: 0.96;
+      cursor: pointer;
     }
 
     .static-txts {
@@ -58,6 +129,7 @@ const StyledContainer = styled.div`
         top: 0;
         animation: slide 6s steps(4) infinite;
         position: relative;
+
         span {
           position: relative;
         }
@@ -109,9 +181,39 @@ function Guide() {
             </li>
           </ul>
         </div>
-        <Link to="/quiz1">
-          <button type="button">PLAY</button>
-        </Link>
+        <a href="#popup1">
+          <button type="button">Let's GO</button>
+        </a>
+      </div>
+
+      <div id="popup1" className="overlay">
+        <div className="popup">
+          <h2>Quiz Instructions</h2>
+          <a className="close" href="#">
+            ×
+          </a>
+          <div className="content">
+            <ul>
+              <p>
+                The quizzes consists of questions carefully designed to help you
+                self-assess your knowledge
+              </p>
+              <p>Each question in the quiz "true or false" format.</p>
+              <p>
+                After responding to a question, click on the "Next Question"
+                button at the bottom
+              </p>
+              <p>
+                The total score for the quiz is based on your responses to all
+                questions
+              </p>
+              <h3>Have Fun!</h3>
+            </ul>
+            <Link to="/quiz1">
+              <button type="button">Start Quiz</button>
+            </Link>
+          </div>
+        </div>
       </div>
     </StyledContainer>
   );
