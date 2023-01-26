@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import BoilerplatePage from './Pages/BoilerplatePage';
+import BoilerplatePage from './Views/Quiz';
+import './Pages/App.css';
 import Results from './Pages/Results';
 import Guide from './Pages/Guide';
 
