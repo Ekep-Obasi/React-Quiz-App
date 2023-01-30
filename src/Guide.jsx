@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import styled from '@emotion/styled';
@@ -182,7 +181,7 @@ function Guide() {
           </ul>
         </div>
         <a href="#popup1">
-          <button type="button">Let's GO</button>
+          <button type="button">Let&rsquo;s GO</button>
         </a>
       </div>
 
@@ -198,10 +197,12 @@ function Guide() {
                 The quizzes consists of questions carefully designed to help you
                 self-assess your knowledge
               </p>
-              <p>Each question in the quiz "true or false" format.</p>
               <p>
-                After responding to a question, click on the "Next Question"
-                button at the bottom
+                Each question in the quiz &rsquo;true or false&rsquo; format.
+              </p>
+              <p>
+                After responding to a question, click on the &rsquo;Next
+                Question&rsquo; button at the bottom
               </p>
               <p>
                 The total score for the quiz is based on your responses to all
@@ -209,7 +210,7 @@ function Guide() {
               </p>
               <h3>Have Fun!</h3>
             </ul>
-            <Link to="/quiz1">
+            <Link to="/question/start">
               <button type="button">Start Quiz</button>
             </Link>
           </div>

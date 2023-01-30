@@ -1,9 +1,12 @@
-/* eslint-disable no-shadow */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
+/* eslint-disable react/no-danger */
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import getQuestions from '../Pages/api';
+import { useState } from 'react';
+import { PageConsumer } from '../Controller/script';
 
 const StyledContent = styled.div`
   display: flex;
@@ -144,90 +147,109 @@ const StyledContent = styled.div`
   }
 `;
 
-function BoilerplatePage({ number, path }) {
-  const [quiz, setQuiz] = useState([]);
-  const [score, setScore] = useState(0);
+function BoilerplatePage() {
+  // const [score, setScore] = useState(0);
+  // const [decision, setDecision] = useState('');
+  // const [disable, setDisable] = useState(false);
 
-  function validation(index, answer) {
-    const arr = quiz;
-    setQuiz(() => {
-      arr.forEach((question, idx) => {
-        if (idx === index) {
-          arr[index].userAns = answer;
-        }
-      });
-      return [...arr];
-    });
+  // function validation(index, answer) {
+  //   const arr = quiz;
+  //   setQuiz(() => {
+  //     arr[index].userAns = answer;
+  //     return [...arr];
+  //   });
 
-    arr.forEach((question, idx) => {
-      if (idx === index) {
-        arr[index].userAns = answer;
+  //   if (answer && arr[index].correct_answer === 'True') {
+  //     setScore((scoreVal) => scoreVal + 5);
+  //     setDecision('Correct Answer');
+  //     setDisable(true);
+  //   } else if (!answer && arr[index].correct_answer === 'False') {
+  //     setScore((scoreVal) => scoreVal + 5);
+  //     setDecision('Correct Answer');
+  //     setDisable(true);
+  //   } else {
+  //     setDecision('Wrong Answer');
+  //     setDisable(true);
+  //   }
+  // }
 
-        if (answer && arr[index].correct_answer === 'True') {
-          setScore((score) => score + 1);
-        }
+  // setAnswer((prevAns) => {
+  //   return {...prevAns, {pageNumber}: answer }
+  // })
 
-        if (!answer && arr[index].correct_answer === 'False') {
-          setScore((score) => score + 1);
-        }
-      }
-    });
-  }
-
-  useEffect(() => {
-    getQuestions().then((response) => {
-      setQuiz([...response.results]);
-    });
-  }, []);
-
-  setTimeout(() => {
-    document.querySelector('.display').innerHTML = quiz[number - 1].question;
-  }, 50);
+  const [pageNumber, setPageNumber] = useState(0);
+  // const [answer, setAnswer] = useState({});
 
   return (
-    <div>
-      <StyledContent>
-        {quiz.length > 0 && (
-          <div className="container">
-            <div className="informationContainer">
-              <p>Score: {score}</p>
-              <h3>
-                Question <span>{number}</span> of 10
-              </h3>
-            </div>
-            <div className="questionContainer">
-              <h3>
-                <span>Category</span> - {quiz[number - 1].category}
-              </h3>
-              <p className="display" />
-              <div className="buttonsContainer">
-                <div className="response">
-                  <button
-                    type="button"
-                    className="greenButton"
-                    onClick={() => validation(number - 1, true)}
-                  >
-                    True
-                  </button>
-                  <button
-                    type="button"
-                    className="redButton"
-                    onClick={() => validation(number - 1, false)}
-                  >
-                    False
-                  </button>
+    <PageConsumer>
+      {(quiz) => {
+        return (
+          quiz.length > 0 && (
+            <StyledContent>
+              <div className="container">
+                <div className="informationContainer">
+                  {/* <p>Score: {score}</p> */}
+                  <h3>
+                    Question <span>{pageNumber + 1}</span> of 10
+                  </h3>
                 </div>
-                <div className="nextButton">
-                  <Link to={path}>
-                    <button type="button">Next Page</button>
-                  </Link>
+                <div className="questionContainer">
+                  <h3>
+                    <span>Category</span> - {quiz[pageNumber].category}
+                  </h3>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: quiz[pageNumber].question,
+                    }}
+                  />
+                  {/* <p>{decision}</p> */}
+                  <div className="buttonsContainer">
+                    <div className="response">
+                      <button
+                        type="button"
+                        className="greenButton"
+                        // onClick={() => validation(number - 1, true)}
+                        // disabled={disable}
+                      >
+                        True
+                      </button>
+                      <button
+                        type="button"
+                        className="redButton"
+                        // onClick={() => validation(number - 1, false)}
+                        // disabled={disable}
+                      >
+                        False
+                      </button>
+                    </div>
+                    <div className="nextButton">
+                      <Link
+                        replace
+                        to={
+                          pageNumber === 9
+                            ? '/results'
+                            : `/question/${pageNumber}`
+                        }
+                      >
+                        <button
+                          type="button"
+                          onClick={() => {
+                            console.log(pageNumber);
+                            setPageNumber((prev) => (prev += 1));
+                          }}
+                        >
+                          Next Page
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
-      </StyledContent>
-    </div>
+            </StyledContent>
+          )
+        );
+      }}
+    </PageConsumer>
   );
 }
 

@@ -1,5 +1,8 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable camelcase */
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { PageConsumer } from '../Controller/script';
 
 const StyledContent = styled.div`
   display: flex;
@@ -31,12 +34,33 @@ const StyledContent = styled.div`
 
 function Results() {
   return (
-    <StyledContent>
-      <h1>Results Page</h1>
-      <Link to="/">
-        <button type="button">Back to Home</button>
-      </Link>
-    </StyledContent>
+    <div className="results">
+      <PageConsumer>
+        {(quiz) => {
+          return (
+            <StyledContent>
+              <h1>Results Page</h1>
+              <div>
+                {quiz.map(({ question, correct_answer }, index) => {
+                  return (
+                    <div className="Review">
+                      <span dangerouslySetInnerHTML={{ __html: index }} />
+                      <span dangerouslySetInnerHTML={{ __html: question }} />
+                      <span
+                        dangerouslySetInnerHTML={{ __html: correct_answer }}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+              <Link to="/">
+                <button type="button">Back to Home</button>
+              </Link>
+            </StyledContent>
+          );
+        }}
+      </PageConsumer>
+    </div>
   );
 }
 
