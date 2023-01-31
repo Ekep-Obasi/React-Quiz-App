@@ -147,8 +147,7 @@ const StyledContent = styled.div`
   }
 `;
 
-function BoilerplatePage({ quizData, setter }) {
-  const [score, setScore] = useState(0);
+function BoilerplatePage({ quizData, setter, score, setScore }) {
   const [decision, setDecision] = useState('');
   const [disable, setDisable] = useState(false);
 
@@ -160,11 +159,11 @@ function BoilerplatePage({ quizData, setter }) {
     });
 
     if (answer && arr[index].correct_answer === 'True') {
-      setScore((scoreVal) => scoreVal + 5);
+      setScore((scoreVal) => scoreVal + 10);
       setDecision('Correct Answer');
       setDisable(true);
     } else if (!answer && arr[index].correct_answer === 'False') {
-      setScore((scoreVal) => scoreVal + 5);
+      setScore((scoreVal) => scoreVal + 10);
       setDecision('Correct Answer');
       setDisable(true);
     } else {
@@ -218,7 +217,11 @@ function BoilerplatePage({ quizData, setter }) {
                     <div className="nextButton">
                       <Link
                         replace
-                        to={number === 9 ? '/results' : `/quiz/${number}`}
+                        to={
+                          number === quiz.length - 1
+                            ? '/results'
+                            : `/quiz/${number}`
+                        }
                       >
                         <button
                           type="button"

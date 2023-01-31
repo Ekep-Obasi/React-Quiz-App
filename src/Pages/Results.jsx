@@ -17,6 +17,12 @@ const StyledContent = styled.div`
     font-size: 60px;
     color: #fff;
     font-weight: 500;
+    margin: 2px;
+  }
+
+  .score {
+    font-size: 36px;
+    color: green;
   }
 
   button {
@@ -54,10 +60,11 @@ function Results() {
   return (
     <div className="results">
       <PageConsumer>
-        {({ quiz, setNumber }) => {
+        {({ quiz, setNumber, score }) => {
           return (
             <StyledContent>
               <h1>Results Page</h1>
+              <div className="score">You Score {score} / 100</div>
               <div>
                 {quiz.map(({ question, correct_answer }, index) => {
                   return (

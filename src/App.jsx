@@ -16,19 +16,27 @@ function App() {
   }, []);
 
   const [number, setNumber] = useState(0);
+  const [score, setScore] = useState(0);
 
   function changePage() {
     setNumber((previousPage) => previousPage + 1);
   }
 
   return (
-    <PageProvider value={{ quiz, number, changePage, setNumber }}>
+    <PageProvider value={{ quiz, number, changePage, setNumber, score }}>
       <BrowserRouter>
         <Routes>
           <Route index element={<Guide />} />
           <Route
             path="/quiz/:id"
-            element={<QuizTemplate quizData={quiz} setter={setQuiz} />}
+            element={
+              <QuizTemplate
+                quizData={quiz}
+                setter={setQuiz}
+                score={score}
+                setScore={setScore}
+              />
+            }
           />
           <Route path="/results" element={<Results />} />
         </Routes>
