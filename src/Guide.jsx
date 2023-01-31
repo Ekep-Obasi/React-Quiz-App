@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import { PageConsumer } from './Controller/script';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -161,62 +162,71 @@ const StyledContainer = styled.div`
 
 function Guide() {
   return (
-    <StyledContainer>
-      <div className="wrapper">
-        <div className="static-txts">Quiz Game</div>
-        <div className="dynamic-txts">
-          <ul>
-            <li>
-              <span>Hey ! 👋</span>
-            </li>
-            <li>
-              <span>Ready ?</span>
-            </li>
-            <li>
-              <span>Let&rsquo;s play</span>
-            </li>
-            <li>
-              <span>Awesome</span>
-            </li>
-          </ul>
-        </div>
-        <a href="#popup1">
-          <button type="button">Let&rsquo;s GO</button>
-        </a>
-      </div>
+    <PageConsumer>
+      {({ number, changePage }) => {
+        return (
+          <StyledContainer>
+            <div className="wrapper">
+              <div className="static-txts">Quiz Game</div>
+              <div className="dynamic-txts">
+                <ul>
+                  <li>
+                    <span>Hey ! 👋</span>
+                  </li>
+                  <li>
+                    <span>Ready ?</span>
+                  </li>
+                  <li>
+                    <span>Let&rsquo;s play</span>
+                  </li>
+                  <li>
+                    <span>Awesome</span>
+                  </li>
+                </ul>
+              </div>
+              <a href="#popup1">
+                <button type="button">Let&rsquo;s GO</button>
+              </a>
+            </div>
 
-      <div id="popup1" className="overlay">
-        <div className="popup">
-          <h2>Quiz Instructions</h2>
-          <a className="close" href="#">
-            ×
-          </a>
-          <div className="content">
-            <ul>
-              <p>
-                The quizzes consists of questions carefully designed to help you
-                self-assess your knowledge
-              </p>
-              <p>
-                Each question in the quiz &rsquo;true or false&rsquo; format.
-              </p>
-              <p>
-                After responding to a question, click on the &rsquo;Next
-                Question&rsquo; button at the bottom
-              </p>
-              <p>
-                The total score for the quiz is based on your responses to all
-                questions
-              </p>
-              <h3>Have Fun!</h3>
-            </ul>
-            <Link to="/question/start">
-              <button type="button">Start Quiz</button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </StyledContainer>
+            <div id="popup1" className="overlay">
+              <div className="popup">
+                <h2>Quiz Instructions</h2>
+                <a className="close" href="#">
+                  ×
+                </a>
+                <div className="content">
+                  <ul>
+                    <p>
+                      The quizzes consists of questions carefully designed to
+                      help you self-assess your knowledge
+                    </p>
+                    <p>
+                      Each question in the quiz &rsquo;true or false&rsquo;
+                      format.
+                    </p>
+                    <p>
+                      After responding to a question, click on the &rsquo;Next
+                      Question&rsquo; button at the bottom
+                    </p>
+                    <p>
+                      The total score for the quiz is based on your responses to
+                      all questions
+                    </p>
+                    <h3>Have Fun!</h3>
+                  </ul>
+                  <Link to={`/quiz/${number}`}>
+                    <button type="button" onClick={changePage}>
+                      Start Quiz
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </StyledContainer>
+        );
+      }}
+    </PageConsumer>
   );
 }
 

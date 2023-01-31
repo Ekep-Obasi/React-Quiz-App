@@ -147,77 +147,70 @@ const StyledContent = styled.div`
   }
 `;
 
-function BoilerplatePage() {
-  // const [score, setScore] = useState(0);
-  // const [decision, setDecision] = useState('');
-  // const [disable, setDisable] = useState(false);
+function BoilerplatePage({ quizData, setter }) {
+  const [score, setScore] = useState(0);
+  const [decision, setDecision] = useState('');
+  const [disable, setDisable] = useState(false);
 
-  // function validation(index, answer) {
-  //   const arr = quiz;
-  //   setQuiz(() => {
-  //     arr[index].userAns = answer;
-  //     return [...arr];
-  //   });
+  function validation(index, answer) {
+    const arr = quizData;
+    setter(() => {
+      arr[index].userAns = answer;
+      return [...arr];
+    });
 
-  //   if (answer && arr[index].correct_answer === 'True') {
-  //     setScore((scoreVal) => scoreVal + 5);
-  //     setDecision('Correct Answer');
-  //     setDisable(true);
-  //   } else if (!answer && arr[index].correct_answer === 'False') {
-  //     setScore((scoreVal) => scoreVal + 5);
-  //     setDecision('Correct Answer');
-  //     setDisable(true);
-  //   } else {
-  //     setDecision('Wrong Answer');
-  //     setDisable(true);
-  //   }
-  // }
-
-  // setAnswer((prevAns) => {
-  //   return {...prevAns, {pageNumber}: answer }
-  // })
-
-  const [pageNumber, setPageNumber] = useState(0);
-  // const [answer, setAnswer] = useState({});
+    if (answer && arr[index].correct_answer === 'True') {
+      setScore((scoreVal) => scoreVal + 5);
+      setDecision('Correct Answer');
+      setDisable(true);
+    } else if (!answer && arr[index].correct_answer === 'False') {
+      setScore((scoreVal) => scoreVal + 5);
+      setDecision('Correct Answer');
+      setDisable(true);
+    } else {
+      setDecision('Wrong Answer');
+      setDisable(true);
+    }
+  }
 
   return (
     <PageConsumer>
-      {(quiz) => {
+      {({ quiz, number, changePage }) => {
         return (
           quiz.length > 0 && (
             <StyledContent>
               <div className="container">
                 <div className="informationContainer">
-                  {/* <p>Score: {score}</p> */}
+                  <p>Score: {score}</p>
                   <h3>
-                    Question <span>{pageNumber + 1}</span> of 10
+                    Question <span>{number}</span> of 10
                   </h3>
                 </div>
                 <div className="questionContainer">
                   <h3>
-                    <span>Category</span> - {quiz[pageNumber].category}
+                    <span>Category</span> - {quiz[number].category}
                   </h3>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: quiz[pageNumber].question,
+                      __html: quiz[number].question,
                     }}
                   />
-                  {/* <p>{decision}</p> */}
+                  <p>{decision}</p>
                   <div className="buttonsContainer">
                     <div className="response">
                       <button
                         type="button"
                         className="greenButton"
-                        // onClick={() => validation(number - 1, true)}
-                        // disabled={disable}
+                        onClick={() => validation(number - 1, true)}
+                        disabled={disable}
                       >
                         True
                       </button>
                       <button
                         type="button"
                         className="redButton"
-                        // onClick={() => validation(number - 1, false)}
-                        // disabled={disable}
+                        onClick={() => validation(number - 1, false)}
+                        disabled={disable}
                       >
                         False
                       </button>
@@ -225,17 +218,14 @@ function BoilerplatePage() {
                     <div className="nextButton">
                       <Link
                         replace
-                        to={
-                          pageNumber === 9
-                            ? '/results'
-                            : `/question/${pageNumber}`
-                        }
+                        to={number === 9 ? '/results' : `/quiz/${number}`}
                       >
                         <button
                           type="button"
                           onClick={() => {
-                            console.log(pageNumber);
-                            setPageNumber((prev) => (prev += 1));
+                            changePage();
+                            setDecision('');
+                            setDisable(false);
                           }}
                         >
                           Next Page

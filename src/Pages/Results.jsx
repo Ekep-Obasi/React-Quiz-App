@@ -32,29 +32,57 @@ const StyledContent = styled.div`
   }
 `;
 
+const StyledReviews = styled.div`
+  color: white;
+  font-size: 18px;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .answer {
+    color: yellow;
+  }
+
+  span {
+    margin: 12px 0;
+  }
+`;
+
 function Results() {
   return (
     <div className="results">
       <PageConsumer>
-        {(quiz) => {
+        {({ quiz, setNumber }) => {
           return (
             <StyledContent>
               <h1>Results Page</h1>
               <div>
                 {quiz.map(({ question, correct_answer }, index) => {
                   return (
-                    <div className="Review">
-                      <span dangerouslySetInnerHTML={{ __html: index }} />
-                      <span dangerouslySetInnerHTML={{ __html: question }} />
+                    <StyledReviews>
                       <span
+                        className="numbers"
+                        dangerouslySetInnerHTML={{ __html: index }}
+                      />
+                      .
+                      <span
+                        className="questions"
+                        dangerouslySetInnerHTML={{ __html: question }}
+                      />
+                      <span
+                        className="answer"
                         dangerouslySetInnerHTML={{ __html: correct_answer }}
                       />
-                    </div>
+                    </StyledReviews>
                   );
                 })}
               </div>
               <Link to="/">
-                <button type="button">Back to Home</button>
+                <button type="button" onClick={setNumber(0)}>
+                  Back to Home
+                </button>
               </Link>
             </StyledContent>
           );
