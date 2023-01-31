@@ -1,12 +1,15 @@
+/* eslint-disable no-const-assign */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 /* eslint-disable react/no-danger */
 /* eslint-disable react/prop-types */
 // import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useState } from 'react';
-import { PageConsumer } from '../Controller/script';
+import useFetch from '../Pages/useFetch';
+import useCustomState from '../Pages/useIncrement';
 
 const StyledContent = styled.div`
   display: flex;
@@ -147,13 +150,17 @@ const StyledContent = styled.div`
   }
 `;
 
-function BoilerplatePage({ quizData, setter, score, setScore }) {
+function BoilerplatePage() {
+  const [quiz, setQuiz] = useFetch();
+  const [score, setScore] = useCustomState(0);
   const [decision, setDecision] = useState('');
   const [disable, setDisable] = useState(false);
 
+  const { id } = useParams();
+
   function validation(index, answer) {
-    const arr = quizData;
-    setter(() => {
+    const arr = quiz;
+    setQuiz(() => {
       arr[index].userAns = answer;
       return [...arr];
     });
@@ -173,76 +180,66 @@ function BoilerplatePage({ quizData, setter, score, setScore }) {
   }
 
   return (
-    <PageConsumer>
-      {({ quiz, number, changePage }) => {
-        return (
-          quiz.length > 0 && (
-            <StyledContent>
-              <div className="container">
-                <div className="informationContainer">
-                  <p>Score: {score}</p>
-                  <h3>
-                    Question <span>{number}</span> of {quiz.length}
-                  </h3>
-                </div>
-                <div className="questionContainer">
-                  <h3>
-                    <span>Category</span> - {quiz[number].category}
-                  </h3>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: quiz[number].question,
-                    }}
-                  />
-                  <p>{decision}</p>
-                  <div className="buttonsContainer">
-                    <div className="response">
-                      <button
-                        type="button"
-                        className="greenButton"
-                        onClick={() => validation(number - 1, true)}
-                        disabled={disable}
-                      >
-                        True
-                      </button>
-                      <button
-                        type="button"
-                        className="redButton"
-                        onClick={() => validation(number - 1, false)}
-                        disabled={disable}
-                      >
-                        False
-                      </button>
-                    </div>
-                    <div className="nextButton">
-                      <Link
-                        replace
-                        to={
-                          number === quiz.length - 1
-                            ? '/results'
-                            : `/quiz/${number}`
-                        }
-                      >
-                        <button
-                          type="button"
-                          onClick={() => {
-                            changePage();
-                            setDecision('');
-                            setDisable(false);
-                          }}
-                        >
-                          Next Page
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+    quiz.length > 0 && (
+      <StyledContent>
+        <div className="container">
+          <div className="informationContainer">
+            <p>Score: {score}</p>
+            <h3>
+              Question <span>{id}</span> of {quiz.length}
+            </h3>
+          </div>
+          <div className="questionContainer">
+            <h3>
+              <span>Category</span> - {quiz[id].category}
+            </h3>
+            <p
+              dangerouslySetInnerHTML={{
+                __html: quiz[id].question,
+              }}
+            />
+            <p>{decision}</p>
+            <div className="buttonsContainer">
+              <div className="response">
+                <button
+                  type="button"
+                  className="greenButton"
+                  onClick={() => validation(id - 1, true)}
+                  disabled={disable}
+                >
+                  True
+                </button>
+                <button
+                  type="button"
+                  className="redButton"
+                  onClick={() => validation(id - 1, false)}
+                  disabled={disable}
+                >
+                  False
+                </button>
               </div>
-            </StyledContent>
-          )
-        );
-      }}
-    </PageConsumer>
+              <div className="nextButton">
+                <Link
+                  replace
+                  to={id === quiz.length - 1 ? '/results' : `/${id}`}
+                >
+                  <button
+                    type="button"
+                    onClick={() => {
+                      id++;
+                      setDecision('');
+                      setDisable(false);
+                    }}
+                  >
+                    Next Page
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </StyledContent>
+    )
   );
 }
 

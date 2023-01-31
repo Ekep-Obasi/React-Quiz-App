@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
 import './Pages/App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import QuizTemplate from './Views/Quiz';
 import Results from './Pages/Results';
 import Guide from './Guide';
 import { PageProvider } from './Controller/script';
-import getQuestions from './Pages/api';
+
+import useFetch from './Pages/useFetch';
+import useCustomState from './Pages/useIncrement';
 
 function App() {
-  const [quiz, setQuiz] = useState([]);
-  useEffect(() => {
-    getQuestions().then((response) => {
-      setQuiz([...response.results]);
-    });
-  }, []);
-
-  const [number, setNumber] = useState(0);
-  const [score, setScore] = useState(0);
+  const [quiz] = useFetch();
+  const [number, setNumber] = useCustomState(0);
+  const [score] = useCustomState(0);
 
   function changePage() {
     setNumber((previousPage) => previousPage + 1);
@@ -27,17 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Guide />} />
-          <Route
-            path="/quiz/:id"
-            element={
-              <QuizTemplate
-                quizData={quiz}
-                setter={setQuiz}
-                score={score}
-                setScore={setScore}
-              />
-            }
-          />
+          <Route path=":id" element={<QuizTemplate />} />
           <Route path="/results" element={<Results />} />
         </Routes>
       </BrowserRouter>

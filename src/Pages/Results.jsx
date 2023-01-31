@@ -57,44 +57,43 @@ const StyledReviews = styled.div`
 
 function Results() {
   return (
-    <div className="results">
-      <PageConsumer>
-        {({ quiz, setNumber, score }) => {
-          return (
-            <StyledContent>
-              <h1>Results Page</h1>
-              <div className="score">You Score {score} / 100</div>
-              <div>
-                {quiz.map(({ question, correct_answer }, index) => {
-                  return (
-                    <StyledReviews>
-                      <span
-                        className="numbers"
-                        dangerouslySetInnerHTML={{ __html: index + 1 }}
-                      />
-                      .
-                      <span
-                        className="questions"
-                        dangerouslySetInnerHTML={{ __html: question }}
-                      />
-                      <span
-                        className="answer"
-                        dangerouslySetInnerHTML={{ __html: correct_answer }}
-                      />
-                    </StyledReviews>
-                  );
-                })}
-              </div>
-              <Link to="/">
-                <button type="button" onClick={setNumber(0)}>
-                  Back to Home
-                </button>
-              </Link>
-            </StyledContent>
-          );
-        }}
-      </PageConsumer>
-    </div>
+    <PageConsumer>
+      {({ quiz, setNumber, score }) => {
+        return (
+          <StyledContent>
+            <h1>Results Page</h1>
+            <div className="score">You Score {score} / 100</div>
+            <div>
+              {quiz.map(({ question, correct_answer }, index) => {
+                return (
+                  <StyledReviews>
+                    <span
+                      key={question}
+                      className="numbers"
+                      dangerouslySetInnerHTML={{ __html: index + 1 }}
+                    />
+                    .
+                    <span
+                      className="questions"
+                      dangerouslySetInnerHTML={{ __html: question }}
+                    />
+                    <span
+                      className="answer"
+                      dangerouslySetInnerHTML={{ __html: correct_answer }}
+                    />
+                  </StyledReviews>
+                );
+              })}
+            </div>
+            <Link to="/">
+              <button type="button" onClick={setNumber(0)}>
+                Back to Home
+              </button>
+            </Link>
+          </StyledContent>
+        );
+      }}
+    </PageConsumer>
   );
 }
 

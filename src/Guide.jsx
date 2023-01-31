@@ -163,7 +163,7 @@ const StyledContainer = styled.div`
 function Guide() {
   return (
     <PageConsumer>
-      {({ number, changePage }) => {
+      {({ changePage }) => {
         return (
           <StyledContainer>
             <div className="wrapper">
@@ -215,7 +215,7 @@ function Guide() {
                     </p>
                     <h3>Have Fun!</h3>
                   </ul>
-                  <Link to={`/quiz/${number}`}>
+                  <Link to="/0">
                     <button type="button" onClick={changePage}>
                       Start Quiz
                     </button>
