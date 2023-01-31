@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getQuestions from './api';
+import getQuestions from '../api';
 
 export default function useFetch() {
   const [quiz, setQuiz] = useState([]);

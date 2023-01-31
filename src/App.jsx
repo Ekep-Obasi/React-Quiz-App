@@ -3,11 +3,11 @@ import './Pages/App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import QuizTemplate from './Views/Quiz';
 import Results from './Pages/Results';
-import Guide from './Guide';
-import { PageProvider } from './Controller/script';
+import Guide from './Views/Guide';
+import { PageProvider } from './Controller/Context';
 
-import useFetch from './Pages/useFetch';
-import useCustomState from './Pages/useIncrement';
+import useFetch from './Pages/Hooks/useFetch';
+import useCustomState from './Pages/Hooks/useIncrement';
 
 function App() {
   const [quiz] = useFetch();

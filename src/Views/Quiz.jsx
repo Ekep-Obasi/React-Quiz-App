@@ -1,15 +1,9 @@
-/* eslint-disable no-const-assign */
-/* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-return-assign */
 /* eslint-disable react/no-danger */
-/* eslint-disable react/prop-types */
-// import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useState } from 'react';
-import useFetch from '../Pages/useFetch';
-import useCustomState from '../Pages/useIncrement';
+import { useState, useMemo } from 'react';
+import useFetch from '../Pages/Hooks/useFetch';
+import useIncrement from '../Pages/Hooks/useIncrement';
 
 const StyledContent = styled.div`
   display: flex;
@@ -152,11 +146,12 @@ const StyledContent = styled.div`
 
 function BoilerplatePage() {
   const [quiz, setQuiz] = useFetch();
-  const [score, setScore] = useCustomState(0);
+  const [score, setScore] = useIncrement(0);
   const [decision, setDecision] = useState('');
   const [disable, setDisable] = useState(false);
 
   const { id } = useParams();
+  const questionIndex = useMemo(() => +id, [id]);
 
   function validation(index, answer) {
     const arr = quiz;
@@ -186,16 +181,16 @@ function BoilerplatePage() {
           <div className="informationContainer">
             <p>Score: {score}</p>
             <h3>
-              Question <span>{id}</span> of {quiz.length}
+              Question <span>{questionIndex}</span> of {quiz.length}
             </h3>
           </div>
           <div className="questionContainer">
             <h3>
-              <span>Category</span> - {quiz[id].category}
+              <span>Category</span> - {quiz[questionIndex].category}
             </h3>
             <p
               dangerouslySetInnerHTML={{
-                __html: quiz[id].question,
+                __html: quiz[questionIndex].question,
               }}
             />
             <p>{decision}</p>
@@ -204,7 +199,7 @@ function BoilerplatePage() {
                 <button
                   type="button"
                   className="greenButton"
-                  onClick={() => validation(id - 1, true)}
+                  onClick={() => validation(questionIndex - 1, true)}
                   disabled={disable}
                 >
                   True
@@ -212,7 +207,7 @@ function BoilerplatePage() {
                 <button
                   type="button"
                   className="redButton"
-                  onClick={() => validation(id - 1, false)}
+                  onClick={() => validation(questionIndex - 1, false)}
                   disabled={disable}
                 >
                   False
@@ -221,12 +216,15 @@ function BoilerplatePage() {
               <div className="nextButton">
                 <Link
                   replace
-                  to={id === quiz.length - 1 ? '/results' : `/${id}`}
+                  to={
+                    questionIndex === quiz.length - 1
+                      ? '/results'
+                      : `/${questionIndex + 1}`
+                  }
                 >
                   <button
                     type="button"
                     onClick={() => {
-                      id++;
                       setDecision('');
                       setDisable(false);
                     }}

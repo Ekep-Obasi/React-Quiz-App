@@ -2,7 +2,7 @@
 /* eslint-disable camelcase */
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { PageConsumer } from '../Controller/script';
+import { PageConsumer } from '../Controller/Context';
 
 const StyledContent = styled.div`
   display: flex;
