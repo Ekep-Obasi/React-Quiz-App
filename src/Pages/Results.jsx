@@ -9,7 +9,6 @@ const StyledContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #343f4f;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
@@ -71,7 +70,7 @@ function Results() {
                     <StyledReviews>
                       <span
                         className="numbers"
-                        dangerouslySetInnerHTML={{ __html: index }}
+                        dangerouslySetInnerHTML={{ __html: index + 1 }}
                       />
                       .
                       <span

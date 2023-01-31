@@ -182,7 +182,7 @@ function BoilerplatePage({ quizData, setter, score, setScore }) {
                 <div className="informationContainer">
                   <p>Score: {score}</p>
                   <h3>
-                    Question <span>{number}</span> of 10
+                    Question <span>{number}</span> of {quiz.length}
                   </h3>
                 </div>
                 <div className="questionContainer">

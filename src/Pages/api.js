@@ -1,5 +1,5 @@
 const URL =
-  'https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean';
+  'https://opentdb.com/api.php?amount=20&difficulty=hard&type=boolean';
 
 const getQuestions = () =>
   fetch(URL)
