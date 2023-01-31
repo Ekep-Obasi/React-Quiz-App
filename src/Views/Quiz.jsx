@@ -181,7 +181,7 @@ function BoilerplatePage() {
           <div className="informationContainer">
             <p>Score: {score}</p>
             <h3>
-              Question <span>{questionIndex}</span> of {quiz.length}
+              Question <span>{questionIndex + 1}</span> of {quiz.length}
             </h3>
           </div>
           <div className="questionContainer">
