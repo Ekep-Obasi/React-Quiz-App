@@ -7,19 +7,14 @@ import Guide from './Views/Guide';
 import { PageProvider } from './Controller/Context';
 
 import useFetch from './Pages/Hooks/useFetch';
-import useCustomState from './Pages/Hooks/useIncrement';
+import useIncrement from './Pages/Hooks/useIncrement';
 
 function App() {
   const [quiz] = useFetch();
-  const [number, setNumber] = useCustomState(0);
-  const [score] = useCustomState(0);
-
-  function changePage() {
-    setNumber((previousPage) => previousPage + 1);
-  }
+  const [score, setScore] = useIncrement(0);
 
   return (
-    <PageProvider value={{ quiz, number, changePage, setNumber, score }}>
+    <PageProvider value={{ quiz, score, setScore }}>
       <BrowserRouter>
         <Routes>
           <Route index element={<Guide />} />

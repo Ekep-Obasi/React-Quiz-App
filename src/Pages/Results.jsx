@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 /* eslint-disable camelcase */
 import styled from '@emotion/styled';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { PageConsumer } from '../Controller/Context';
 
@@ -56,9 +57,10 @@ const StyledReviews = styled.div`
 `;
 
 function Results() {
+  const { setScore } = useContext(PageConsumer);
   return (
     <PageConsumer>
-      {({ quiz, setNumber, score }) => {
+      {({ quiz, score }) => {
         return (
           <StyledContent>
             <h1>Results Page</h1>
@@ -86,7 +88,7 @@ function Results() {
               })}
             </div>
             <Link to="/">
-              <button type="button" onClick={setNumber(0)}>
+              <button type="button" onClick={() => setScore(0)}>
                 Back to Home
               </button>
             </Link>

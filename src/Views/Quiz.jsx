@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 import { Link, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useContext } from 'react';
 import useFetch from '../Pages/Hooks/useFetch';
-import useIncrement from '../Pages/Hooks/useIncrement';
+import { PageContext } from '../Controller/Context';
 
 const StyledContent = styled.div`
   display: flex;
@@ -145,8 +145,8 @@ const StyledContent = styled.div`
 `;
 
 function BoilerplatePage() {
+  const { score, setScore } = useContext(PageContext);
   const [quiz, setQuiz] = useFetch();
-  const [score, setScore] = useIncrement(0);
   const [decision, setDecision] = useState('');
   const [disable, setDisable] = useState(false);
 
@@ -199,7 +199,7 @@ function BoilerplatePage() {
                 <button
                   type="button"
                   className="greenButton"
-                  onClick={() => validation(questionIndex - 1, true)}
+                  onClick={() => validation(questionIndex, true)}
                   disabled={disable}
                 >
                   True
@@ -207,7 +207,7 @@ function BoilerplatePage() {
                 <button
                   type="button"
                   className="redButton"
-                  onClick={() => validation(questionIndex - 1, false)}
+                  onClick={() => validation(questionIndex, false)}
                   disabled={disable}
                 >
                   False

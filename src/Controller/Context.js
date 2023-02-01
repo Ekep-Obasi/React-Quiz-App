@@ -8,4 +8,4 @@ const PageConsumer = PageContext.Consumer;
 
 export const usePage = () => useContext(PageContext);
 
-export { PageConsumer, PageProvider };
+export { PageConsumer, PageProvider, PageContext };
