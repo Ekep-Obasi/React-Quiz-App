@@ -5,7 +5,6 @@ import QuizTemplate from './Views/Quiz';
 import Results from './Pages/Results';
 import Guide from './Views/Guide';
 import { PageProvider } from './Controller/Context';
-
 import useFetch from './Pages/Hooks/useFetch';
 import useIncrement from './Pages/Hooks/useIncrement';
 
@@ -18,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Guide />} />
-          <Route path=":id" element={<QuizTemplate />} />
+          <Route path="/quiz/:id" element={<QuizTemplate />} />
           <Route path="/results" element={<Results />} />
         </Routes>
       </BrowserRouter>

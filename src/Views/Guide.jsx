@@ -215,7 +215,7 @@ function Guide() {
                     </p>
                     <h3>Have Fun!</h3>
                   </ul>
-                  <Link to="/0">
+                  <Link to="/quiz/0">
                     <button type="button" onClick={changePage}>
                       Start Quiz
                     </button>

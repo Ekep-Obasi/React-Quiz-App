@@ -219,7 +219,7 @@ function BoilerplatePage() {
                   to={
                     questionIndex === quiz.length - 1
                       ? '/results'
-                      : `/${questionIndex + 1}`
+                      : `/quiz/${questionIndex + 1}`
                   }
                 >
                   <button
