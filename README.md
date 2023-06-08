@@ -1,6 +1,7 @@
 # Quiz App
 
-A sample quiz app bootstraped with [Create React App](https://github.com/facebook/create-react-app).
+A sample quiz app bootstraped with [Create React App](https://github.com/facebook/create-react-app). 
+Using data from [Opentdb Api](https://opentdb.com)
 
 ## Available Scripts
 
