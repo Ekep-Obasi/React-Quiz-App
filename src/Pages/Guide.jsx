@@ -69,9 +69,13 @@ const StyledContainer = styled.div`
 
       ul {
         padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
 
-        p {
+        li {
           line-height: 1rem;
+          padding: 0.5rem 0;
         }
       }
 
@@ -202,21 +206,21 @@ function Guide() {
           </a>
           <div className="content">
             <ul>
-              <p>
+              <li>
                 The quizzes consists of questions carefully designed to help you
                 self-assess your knowledge
-              </p>
-              <p>
+              </li>
+              <li>
                 Each question in the quiz &rsquo;true or false&rsquo; format.
-              </p>
-              <p>
+              </li>
+              <li>
                 After responding to a question, click on the &rsquo;Next
                 Question&rsquo; button at the bottom
-              </p>
-              <p>
+              </li>
+              <li>
                 The total score for the quiz is based on your responses to all
                 questions
-              </p>
+              </li>
               <h3>Have Fun!</h3>
             </ul>
             <Link to="/quiz/0">
