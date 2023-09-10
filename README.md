@@ -6,6 +6,9 @@ This is a quiz app that uses the Open Trivia DB API to fetch questions. The app 
 
 [![QuizApp](./assets/preview1.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
 
+[![QuizApp](./assets/preview2.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
+
+
 ## Features
 
 * Fetches questions from the Open Trivia DB API
