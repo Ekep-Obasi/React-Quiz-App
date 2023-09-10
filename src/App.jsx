@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import QuizTemplate from './pages/Quiz';
-import Results from './pages/Results';
-import Guide from './pages/Guide';
+import QuizTemplate from './page/Quiz';
+import Results from './page/Results';
+import Guide from './page/Guide';
 import QuizProvider from './context/QuizContext';
 
 function App() {
