@@ -2,7 +2,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { PageConsumer } from '../Controller/Context';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -10,6 +9,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
   background-color: #343f4f;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 
@@ -35,6 +35,7 @@ const StyledContainer = styled.div`
     margin: 70px auto;
     padding: 20px;
     background: #fff;
+    min-width: 320px;
     border-radius: 5px;
     width: 30%;
     position: relative;
@@ -65,6 +66,18 @@ const StyledContainer = styled.div`
     .content {
       max-height: 30%;
       overflow: auto;
+
+      ul {
+        padding: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        li {
+          line-height: 1rem;
+          padding: 0.5rem 0;
+        }
+      }
 
       button {
         padding: 0.8rem 1.2rem;
@@ -111,7 +124,6 @@ const StyledContainer = styled.div`
 
     .dynamic-txts {
       top: 0;
-      margin-left: 15px;
       height: 90px;
       line-height: 90px;
       overflow: hidden;
@@ -124,7 +136,7 @@ const StyledContainer = styled.div`
       li {
         list-style: none;
         color: #fc6d6d;
-        font-size: 60px;
+        font-size: 3.75rem;
         font-weight: 500;
         top: 0;
         animation: slide 6s steps(4) infinite;
@@ -162,71 +174,62 @@ const StyledContainer = styled.div`
 
 function Guide() {
   return (
-    <PageConsumer>
-      {({ changePage }) => {
-        return (
-          <StyledContainer>
-            <div className="wrapper">
-              <div className="static-txts">Quiz Game</div>
-              <div className="dynamic-txts">
-                <ul>
-                  <li>
-                    <span>Hey ! 👋</span>
-                  </li>
-                  <li>
-                    <span>Ready ?</span>
-                  </li>
-                  <li>
-                    <span>Let&rsquo;s play</span>
-                  </li>
-                  <li>
-                    <span>Awesome</span>
-                  </li>
-                </ul>
-              </div>
-              <a href="#popup1">
-                <button type="button">Let&rsquo;s GO</button>
-              </a>
-            </div>
+    <StyledContainer>
+      <div className="wrapper">
+        <div className="static-txts">Quiz Game</div>
+        <div className="dynamic-txts">
+          <ul>
+            <li>
+              <span>Hey ! 👋</span>
+            </li>
+            <li>
+              <span>Ready ?</span>
+            </li>
+            <li>
+              <span>Let&rsquo;s play</span>
+            </li>
+            <li>
+              <span>Awesome</span>
+            </li>
+          </ul>
+        </div>
+        <a href="#popup1">
+          <button type="button">Let&rsquo;s GO</button>
+        </a>
+      </div>
 
-            <div id="popup1" className="overlay">
-              <div className="popup">
-                <h2>Quiz Instructions</h2>
-                <a className="close" href="#">
-                  ×
-                </a>
-                <div className="content">
-                  <ul>
-                    <p>
-                      The quizzes consists of questions carefully designed to
-                      help you self-assess your knowledge
-                    </p>
-                    <p>
-                      Each question in the quiz &rsquo;true or false&rsquo;
-                      format.
-                    </p>
-                    <p>
-                      After responding to a question, click on the &rsquo;Next
-                      Question&rsquo; button at the bottom
-                    </p>
-                    <p>
-                      The total score for the quiz is based on your responses to
-                      all questions
-                    </p>
-                    <h3>Have Fun!</h3>
-                  </ul>
-                  <Link to="/quiz/0">
-                    <button type="button" onClick={changePage}>
-                      Start Quiz
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </StyledContainer>
-        );
-      }}
-    </PageConsumer>
+      <div id="popup1" className="overlay">
+        <div className="popup">
+          <h2>Quiz Instructions</h2>
+          <a className="close" href="#">
+            ×
+          </a>
+          <div className="content">
+            <ul>
+              <li>
+                The quizzes consists of questions carefully designed to help you
+                self-assess your knowledge
+              </li>
+              <li>
+                Each question in the quiz &rsquo;true or false&rsquo; format.
+              </li>
+              <li>
+                After responding to a question, click on the &rsquo;Next
+                Question&rsquo; button at the bottom
+              </li>
+              <li>
+                The total score for the quiz is based on your responses to all
+                questions
+              </li>
+              <h3>Have Fun!</h3>
+            </ul>
+            <Link to="/quiz/0">
+              <button type="button">Start Quiz</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </StyledContainer>
   );
 }
 

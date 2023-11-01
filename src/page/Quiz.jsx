@@ -1,9 +1,8 @@
 /* eslint-disable react/no-danger */
 import { Link, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { useState, useMemo, useContext } from 'react';
-import useFetch from '../Pages/Hooks/useFetch';
-import { PageContext } from '../Controller/Context';
+import { useState, useMemo } from 'react';
+import { useQuiz } from '../context/QuizContext';
 
 const StyledContent = styled.div`
   display: flex;
@@ -12,6 +11,7 @@ const StyledContent = styled.div`
   align-items: center;
   height: 100vh;
   margin: auto;
+  padding: 1rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: #343f4f;
 
@@ -21,12 +21,17 @@ const StyledContent = styled.div`
     align-items: center;
     background-color: #e0e0e0;
     width: 65%;
-    min-width: 560px;
+    min-width: 320px;
     min-height: 550px;
     border-radius: 16px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
       rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
       rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    @media screen and (max-width: 72em) {
+      flex-direction: column;
+      padding: 1rem;
+    }
 
     .informationContainer {
       position: relative;
@@ -36,15 +41,35 @@ const StyledContent = styled.div`
       align-items: center;
       width: 30%;
       height: 550px;
-      border-right: 15px solid #fc6d6d;
+      border-right: 8px solid #fc6d6d;
+
+      @media screen and (max-width: 72em) {
+        height: fit-content;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      @media screen and (max-width: 72em) {
+        width: 100%;
+        padding: 1rem;
+        height: fit-content;
+        border-right: 0;
+        border-bottom: 8px solid #fc6d6d;
+      }
 
       h3 {
         align-self: center;
         text-align: center;
-        font-size: 42px;
+        font-size: 2.625rem;
         margin: 0;
         padding: 0;
         margin: 0 2%;
+
+        @media screen and (max-width: 72em) {
+          font-size: 1.5rem;
+          margin: 0;
+        }
 
         span {
           color: #fc6d6d;
@@ -52,12 +77,19 @@ const StyledContent = styled.div`
       }
 
       p {
-        font-size: 24px;
+        font-size: 1.8rem;
         font-weight: 400;
         top: 0;
         position: absolute;
         margin: 0;
         padding: 5px 0;
+
+        @media screen and (max-width: 72em) {
+          font-size: 1.5rem;
+          position: relative;
+          padding: 0;
+          flex: 2;
+        }
       }
     }
 
@@ -69,6 +101,12 @@ const StyledContent = styled.div`
       height: 550px;
       box-sizing: border-box;
       margin: 15px 2%;
+
+      @media screen and (max-width: 72em) {
+        height: fit-content;
+        width: 100%;
+        gap: 2rem;
+      }
 
       .buttonsContainer {
         display: flex;
@@ -88,7 +126,7 @@ const StyledContent = styled.div`
             height: 45px;
             width: 75px;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 1.25rem;
             font-weight: 500;
             color: #fff;
             border: none;
@@ -115,7 +153,8 @@ const StyledContent = styled.div`
           width: 100%;
 
           button {
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
             color: #fff;
             background-color: #343f4f;
             border: none;
@@ -126,13 +165,17 @@ const StyledContent = styled.div`
       }
 
       h3 {
-        font-size: 20px;
+        font-size: 1.25rem;
         margin: 0;
         padding: 0;
 
         span {
-          font-size: 30px;
+          font-size: 1.875rem;
           color: orange;
+
+          @media screen and (max-width: 72em) {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -145,8 +188,7 @@ const StyledContent = styled.div`
 `;
 
 function BoilerplatePage() {
-  const { score, setScore } = useContext(PageContext);
-  const [quiz, setQuiz] = useFetch();
+  const { score, setScore, quiz, setQuiz } = useQuiz();
   const [decision, setDecision] = useState('');
   const [disable, setDisable] = useState(false);
 
