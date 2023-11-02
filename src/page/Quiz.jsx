@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import { Link, useParams } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { useState, useMemo } from 'react';
