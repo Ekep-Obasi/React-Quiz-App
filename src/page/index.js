@@ -1,7 +1,7 @@
 import Error from './Error';
-import Guide from './Landing';
+import Landing from './Landing';
 import Quiz from './Quiz';
 import Results from './Results';
 import Test from './Test';
 
-export { Error, Guide, Quiz, Results, Test };
+export { Error, Landing, Quiz, Results, Test };
