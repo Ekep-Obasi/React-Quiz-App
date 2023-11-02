@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable camelcase */
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { useQuiz } from '../context/QuizContext';
