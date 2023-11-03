@@ -46,7 +46,7 @@ const InstructionsModule = () => {
         </li>
         <h3>Have Fun!</h3>
       </ul>
-      <Link to="/test">
+      <Link to="/setup-quiz">
         <Button type="button">Start Quiz</Button>
       </Link>
     </StyledPopUpContent>

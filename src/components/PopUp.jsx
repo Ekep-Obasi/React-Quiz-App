@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useSearchParams } from 'react-router-dom';
+import Button from './Button';
 
 const StyledPopup = styled.div`
   position: absolute;
@@ -17,19 +18,21 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   overflow: auto;
-  margin: 70px auto;
+  margin: 100px auto;
   padding: 20px;
   background: #fff;
   min-width: 320px;
   border-radius: 5px;
   width: 30%;
   transition: all 0.3s ease-in-out;
-  top: ${(props) => (props.state ? '100px' : '-500px')};
+  top: ${(props) => (props.state ? '150px' : '-500px')};
+  z-index: 999;
 
   .close {
     align-self: flex-end;
+    padding: 0;
     transition: all 200ms;
-    font-size: 30px;
+    font-size: 2.5rem;
     font-weight: bold;
     text-decoration: none;
     color: #333;
@@ -48,18 +51,15 @@ const PopUp = ({ children }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
-    <StyledPopup
-      state={searchParams.get('modal_show')}
-      onClick={() => setSearchParams({})}
-    >
+    <StyledPopup state={searchParams.get('modal_show')}>
       <StyledContent>
-        <button
+        <Button
           type="button"
           onClick={() => setSearchParams({})}
           className="close"
         >
-          ×
-        </button>
+          &times;
+        </Button>
         {children}
       </StyledContent>
     </StyledPopup>
