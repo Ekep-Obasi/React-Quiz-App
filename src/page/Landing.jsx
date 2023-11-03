@@ -22,17 +22,15 @@ function Landing() {
   const [searchParams, setSearchParmas] = useSearchParams({
     modal_show: false,
   });
+
   return (
     <StyledContainer>
       <AnimatedText />
       <Button
         style={{ margin: '2rem' }}
-        onClick={() => {
-          setSearchParmas({ modal_show: true });
-          console.log('clicked');
-        }}
+        onClick={() => setSearchParmas({ modal_show: true })}
       >
-        Let&rsquo;s GO
+        Let&rsquo;s Go
       </Button>
       <PopUp isOpen={searchParams.get('modal_show')}>
         <InstructionsModule />
