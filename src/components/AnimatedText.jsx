@@ -2,6 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const StyledDynamicText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   .static-txts {
     color: #fff;
     font-size: 60px;
@@ -57,7 +62,7 @@ const StyledDynamicText = styled.div`
   }
 `;
 
-const AnimatedText = () => {
+function AnimatedText() {
   return (
     <StyledDynamicText>
       <div className="static-txts">Quiz Game</div>
@@ -79,6 +84,6 @@ const AnimatedText = () => {
       </div>
     </StyledDynamicText>
   );
-};
+}
 
 export default AnimatedText;
