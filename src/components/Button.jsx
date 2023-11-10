@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
+const Button = ({ children, ...props }) => {
+  return <StyledButton {...props}>{children}</StyledButton>;
+};
+
 const StyledButton = styled.button`
   padding: 0.8rem 1.2rem;
   background-color: #fc6d6d;
@@ -15,9 +19,5 @@ const StyledButton = styled.button`
     cursor: pointer;
   }
 `;
-
-const Button = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
-};
 
 export default Button;

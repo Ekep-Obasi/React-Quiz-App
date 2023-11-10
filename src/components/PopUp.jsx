@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useSearchParams } from 'react-router-dom';
-import Button from './Button';
+import { Button } from '.';
 
 const StyledPopup = styled.div`
   position: absolute;
@@ -21,10 +21,10 @@ const StyledContent = styled.div`
   margin: 100px auto;
   padding: 20px;
   background: #fff;
-  min-width: 320px;
+  min-width: 360px;
   border-radius: 5px;
-  width: 30%;
-  transition: all 0.3s ease-in-out;
+  width: 34%;
+  transition: top 0.2s linear;
   top: ${(props) => (props.state ? '150px' : '-500px')};
   z-index: 999;
 

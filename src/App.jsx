@@ -1,23 +1,21 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import QuizTemplate from './page/Quiz';
-import QuizProvider from './context/QuizContext';
-import { Error, Landing, Results, Test } from './page';
+import { Error, Landing, Results, SetupQuiz, Quiz } from './page';
+import { ErrorBoundary } from 'react-error-boundary';
 
 function App() {
   return (
-    <QuizProvider>
+    <ErrorBoundary FallbackComponent={Error}>
       <Router>
         <Routes>
           <Route index element={<Landing />} />
-          <Route path="/quiz/:id" element={<QuizTemplate />} />
+          <Route path="/quiz/:id" element={<Quiz />} />
           <Route path="/results" element={<Results />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="*" element={<Error />} />
+          <Route path="/setup-quiz" element={<SetupQuiz />} />
         </Routes>
       </Router>
-    </QuizProvider>
+    </ErrorBoundary>
   );
 }
 

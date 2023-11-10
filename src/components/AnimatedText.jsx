@@ -1,67 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const StyledDynamicText = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .static-txts {
-    color: #fff;
-    font-size: 60px;
-    font-weight: 500;
-  }
-
-  .dynamic-txts {
-    top: 0;
-    height: 90px;
-    line-height: 90px;
-    overflow: hidden;
-
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      list-style: none;
-      color: #fc6d6d;
-      font-size: 3.75rem;
-      font-weight: 500;
-      top: 0;
-      animation: slide 6s steps(4) infinite;
-      position: relative;
-
-      span {
-        position: relative;
-      }
-
-      span::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        height: 110%;
-        width: 100%;
-        background-color: #343f4f;
-        border-left: 2px solid #fc6d6d;
-        animation: typing 1.5s steps(10) infinite;
-      }
-    }
-  }
-  @keyframes slide {
-    100% {
-      top: -360px;
-    }
-  }
-  @keyframes typing {
-    100% {
-      left: 100%;
-      margin: 0 -35px 0 35px;
-    }
-  }
-`;
-
 function AnimatedText() {
   return (
     <StyledDynamicText>
@@ -85,5 +24,69 @@ function AnimatedText() {
     </StyledDynamicText>
   );
 }
+
+const StyledDynamicText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .static-txts {
+    ${(props) => props.theme.colors.gradient}
+    font-size: 60px;
+    font-weight: 600;
+  }
+
+  .dynamic-txts {
+    top: 0;
+    height: 90px;
+    line-height: 90px;
+    overflow: hidden;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    li {
+      list-style: none;
+      color: #fc6d6d;
+      font-size: 3.75rem;
+      font-weight: 500;
+      top: 0;
+      animation: slide 6s steps(4) infinite;
+      position: relative;
+
+      span {
+        position: relative;
+      }
+
+      span::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        height: 120%;
+        width: 100%;
+        background-color: ${(props) => props.theme.bg.primary};
+        border-left: 2px solid #fc6d6d;
+        animation: typing 1.5s steps(10) infinite;
+      }
+    }
+  }
+  @keyframes slide {
+    100% {
+      top: -360px;
+    }
+  }
+  @keyframes typing {
+    100% {
+      left: 100%;
+      margin: 0 -35px 0 35px;
+    }
+  }
+`;
 
 export default AnimatedText;

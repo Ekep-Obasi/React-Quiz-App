@@ -1,6 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Box from './Box';
+import { Box } from '.';
+
+function DropDown({ data = [], area_label, ...props }) {
+  return (
+    <Box direction="column" spacing="5px">
+      <label>{area_label}</label>
+      <StyledSelect {...props}>
+        {data?.map(({ label, value }) => (
+          <StyledOption key={value} value={value}>
+            {label}
+          </StyledOption>
+        ))}
+      </StyledSelect>
+    </Box>
+  );
+}
 
 const StyledSelect = styled.select`
   padding: 0.75rem;
@@ -26,20 +41,5 @@ const StyledOption = styled.option`
     background-color: red;
   }
 `;
-
-function DropDown({ data = [], area_label, ...props }) {
-  return (
-    <Box direction="column" spacing="5px">
-      <label>{area_label}</label>
-      <StyledSelect {...props}>
-        {data?.map(({ label, value }) => (
-          <StyledOption key={value} value={value}>
-            {label}
-          </StyledOption>
-        ))}
-      </StyledSelect>
-    </Box>
-  );
-}
 
 export default DropDown;

@@ -1,10 +1,22 @@
-export const API_URL =
-  process.env.REACT_APP_API_URL ||
-  'https://opentdb.com';
+export const BASE_URL = 'https://opentdb.com';
 
-  // ?amount=10&difficulty=hard&type=boolean
+export { quizCategories, difficultyLevel, quizType } from './questions';
 
-  export const BASE_URL = 'https://opentdb.com'
-
-export { quizCategories } from './questions';
-export { difficultyLevel } from './questions';
+export const ErrorTypes = {
+  "1": {
+    title: 'No Results',
+    message: "Could not return results. The API doesn't have enough questions for your query. (Ex. Asking for 50 Questions in a Category that only has 20.)"
+  },
+  "2": {
+    title: 'Invalid Parameter',
+    message: "Your Query contains an invalid parameter"
+  },
+  "3": {
+    title: 'Token Not Found',
+    message: "Session Token does not exist."
+  },
+  "4": {
+    title: 'Token Empty',
+    message: "Session Token has returned all possible questions for the specified query. Resetting the Token is necessary."
+  },
+}

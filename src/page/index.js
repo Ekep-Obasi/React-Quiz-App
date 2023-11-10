@@ -1,7 +1,5 @@
-import Error from './Error';
-import Landing from './Landing';
-import Quiz from './Quiz';
-import Results from './Results';
-import SetupQuiz from './SetupQuiz';
-
-export { Error, Landing, Quiz, Results, SetupQuiz };
+export { default as Error } from './Error';
+export { default as Landing } from './Landing';
+export { default as Quiz } from './Quiz';
+export { default as Results } from './Results';
+export { default as SetupQuiz } from './SetupQuiz';
