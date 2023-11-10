@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ToggleTheme } from '.';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <StyledHeader>
-      <span className="app__logo">BrainTeasers ⚡</span>
+      <Link to="/" className="app__logo">
+        BrainTeasers ⚡
+      </Link>
       <ToggleTheme />
     </StyledHeader>
   );
@@ -23,7 +26,7 @@ const StyledHeader = styled.div`
 
   .app__logo {
     font-family: 'Agbalumo', cursive;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #fff;
   }
 `;
