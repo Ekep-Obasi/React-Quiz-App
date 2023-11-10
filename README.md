@@ -2,15 +2,15 @@
 
 This is a quiz app that uses the Open Trivia DB API to fetch questions. The app is built with React JS and is a small practice project.
 
-[![QuizApp](./assets/quiz-app-home.PNG](https://github.com/Ekep-Obasi/React-Quiz-App)
+[![QuizApp](./assets/quiz-app-home.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
 
-[![QuizApp](./assets/quiz-app-instructions.PNG](https://github.com/Ekep-Obasi/React-Quiz-App)
+[![QuizApp](./assets/quiz-app-instructions.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
 
-[![QuizApp](./assets/quiz-app-setup.PNG](https://github.com/Ekep-Obasi/React-Quiz-App)
+[![QuizApp](./assets/quiz-app-setup.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
 
-[![QuizApp](./assets/quiz-app-quiz-page.PNG](https://github.com/Ekep-Obasi/React-Quiz-App)
+[![QuizApp](./assets/quiz-app-quiz-page.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
 
-[![QuizApp](./assets/quiz-app-results.PNG](https://github.com/Ekep-Obasi/React-Quiz-App)
+[![QuizApp](./assets/quiz-app-results.PNG)](https://github.com/Ekep-Obasi/React-Quiz-App)
 
 
 ## Features
