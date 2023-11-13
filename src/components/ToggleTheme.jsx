@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
 
 const ToggleTheme = () => {
   const { setMode, mode, themeObj } = useTheme();
-  
+
   const toggleMode = () =>
     setMode((prev) => (prev === 'light' ? 'dark' : 'light'));
 
@@ -48,10 +48,10 @@ const StyledToggleModeButton = styled.button`
             left: 5px;
           `
         : css`
-            right: 5px;
+            left: 40px;
           `;
     }}
-    transition: all 0.3s linear;
+    transition: 0.3s all linear;
     position: absolute;
   }
 
