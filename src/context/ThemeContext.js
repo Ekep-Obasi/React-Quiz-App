@@ -5,14 +5,12 @@ import { LocalStorage } from '../utils/localStorage';
 
 const ThemeContext = createContext();
 
-const MODE = ['light', 'dark'];
-
 export default function ThemeProvider({ children }) {
-  const [mode, setMode] = useState((LocalStorage.getData('mode') || 'light'));
+  const [mode, setMode] = useState(LocalStorage.getData('mode') || 'light');
 
   useEffect(() => {
-    if(LocalStorage.getData('mode')) {
-      LocalStorage.setData('mode', mode)
+    if (LocalStorage.getData('mode')) {
+      LocalStorage.setData('mode', mode);
     }
   }, [mode]);
 
