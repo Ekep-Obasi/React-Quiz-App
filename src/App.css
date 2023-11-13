@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: sans-serif;
   overflow-x: hidden;
+  transition: 0.3s background-color ease-out;
 }
 
 a {
